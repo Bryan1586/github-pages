@@ -1,75 +1,82 @@
-<header>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceso restringido</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 40px;
+            background-color: #f0f0f0;
+        }
+        .contenido {
+            display: none;
+            margin-top: 30px;
+        }
+        .imagen {
+            width: 200px;
+            margin: 10px;
+            border-radius: 12px;
+        }
+        input[type="text"] {
+            padding: 8px;
+            margin: 10px;
+            width: 300px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="preguntas">
+        <p>¿Cuál es mi apodo?</p>
+        <input type="text" id="respuesta1"><br>
 
-<!--
-  <<< Author notes: Course header >>>
-  Include a 1280×640 image, course title in sentence case, and a concise description in emphasis.
-  In your repository settings: enable template repository, add your 1280×640 social image, auto delete head branches.
-  Add your open source license, GitHub uses MIT license.
--->
+        <p>¿Cuál es tu apodo?</p>
+        <input type="text" id="respuesta2"><br>
 
-# GitHub Pages
+        <p><em>Si tú eres la persona correcta, sabrás que responder</em></p>
 
-_Create a site or blog from your GitHub repositories with GitHub Pages._
+        <button onclick="verificarRespuestas()">Verificar</button>
+    </div>
 
-</header>
+    <div id="contenido" class="contenido">
+        <h2>Vuelve cuando realmente me quieras</h2>
+        <h3>Quizás no sea muy tarde</h3>
 
-<!--
-  <<< Author notes: Course start >>>
-  Include start button, a note about Actions minutes,
-  and tell the learner why they should take the course.
--->
+        <div>
+            <a href="https://www.youtube.com/watch?v=yKNxeF4KMsY" target="_blank">
+                <img class="imagen" src="https://img.youtube.com/vi/yKNxeF4KMsY/0.jpg" alt="Yellow">
+            </a>
+            <a href="https://www.youtube.com/watch?v=RB-RcX5DS5A" target="_blank">
+                <img class="imagen" src="https://img.youtube.com/vi/RB-RcX5DS5A/0.jpg" alt="The Scientist">
+            </a>
+            <a href="https://www.youtube.com/watch?v=k4V3Mo61fJM" target="_blank">
+                <img class="imagen" src="https://img.youtube.com/vi/k4V3Mo61fJM/0.jpg" alt="Fix You">
+            </a>
+        </div>
+    </div>
 
-## Welcome
+    <script>
+        function verificarRespuestas() {
+            const r1 = document.getElementById("respuesta1").value.toLowerCase().trim();
+            const r2 = document.getElementById("respuesta2").value.toLowerCase().trim();
+            const valido1 = (r1 === "ryan");
+            const valido2 = (r2 === "lunita" || r2 === "cielito");
 
-With GitHub Pages, you can host project blogs, documentation, resumes, portfolios, or any other static content you'd like. Your GitHub repository can easily become its own website. In this course, we'll show you how to set up your own site or blog using GitHub Pages.
-
-- **Who is this for**: Beginners, students, project maintainers, small businesses.
-- **What you'll learn**: How to build a GitHub Pages site.
-- **What you'll build**: We'll build a simple GitHub Pages site with a blog. We'll use [Jekyll](https://jekyllrb.com), a static site generator.
-- **Prerequisites**: If you need to learn about branches, commits, and pull requests, take [Introduction to GitHub](https://github.com/skills/introduction-to-github) first.
-- **How long**: This course takes less than one hour to complete.
-
-In this course, you will:
-
-1. Enable GitHub Pages
-2. Configure your site
-3. Customize your home page
-4. Create a blog post
-5. Merge your pull request
-
-### How to start this course
-
-<!-- For start course, run in JavaScript:
-'https://github.com/new?' + new URLSearchParams({
-  template_owner: 'skills',
-  template_name: 'github-pages',
-  owner: '@me',
-  name: 'skills-github-pages',
-  description: 'My clone repository',
-  visibility: 'public',
-}).toString()
--->
-
-[![start-course](https://user-images.githubusercontent.com/1221423/235727646-4a590299-ffe5-480d-8cd5-8194ea184546.svg)](https://github.com/new?template_owner=skills&template_name=github-pages&owner=%40me&name=skills-github-pages&description=My+clone+repository&visibility=public)
-
-1. Right-click **Start course** and open the link in a new tab.
-2. In the new tab, most of the prompts will automatically fill in for you.
-   - For owner, choose your personal account or an organization to host the repository.
-   - We recommend creating a public repository, as private repositories will [use Actions minutes](https://docs.github.com/en/billing/managing-billing-for-github-actions/about-billing-for-github-actions).
-   - Scroll down and click the **Create repository** button at the bottom of the form.
-3. After your new repository is created, wait about 20 seconds, then refresh the page. Follow the step-by-step instructions in the new repository's README.
-
-<footer>
-
-<!--
-  <<< Author notes: Footer >>>
-  Add a link to get support, GitHub status page, code of conduct, license link.
--->
-
----
-
-Get help: [Post in our discussion board](https://github.com/orgs/skills/discussions/categories/github-pages) &bull; [Review the GitHub status page](https://www.githubstatus.com/)
-
-&copy; 2023 GitHub &bull; [Code of Conduct](https://www.contributor-covenant.org/version/2/1/code_of_conduct/code_of_conduct.md) &bull; [MIT License](https://gh.io/mit)
-
-</footer>
+            if (valido1 && valido2) {
+                document.getElementById("contenido").style.display = "block";
+                document.getElementById("preguntas").style.display = "none";  // Elimina las preguntas después de respuestas correctas
+            } else {
+                alert("Respuestas incorrectas. No puedes acceder al contenido.");
+            }
+        }
+    </script>
+</body>
+</html>
